@@ -33,7 +33,8 @@ Make sure the user account that is running has read access to the main nginx log
 
 .. code-block:: bash
 
-    $ sudo chown your_user_name:www-data g+r /var/log/nginx/access.log
+    $ sudo chown your_user_name:www-data /var/log/nginx/access.log
+    $ sudo chmod u+r /var/log/nginx/access.log
 
 .. code-block:: bash
 
