@@ -9,4 +9,4 @@
 
 This is the installation and usage guide for the [IHAN](https://www.ihan.ee/) Client. This utility is used for feeding and back filling log files to the IHAN service.
 
-Please see the [installation and usage guide](docs/index.rst) for further information.
+Please see the [installation and usage guide](https://ihan.readthedocs.io/en/latest/) for further information.
