@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='ihan',
-      version='0.3.1',
+      version='0.3.2',
       description='IHAN Client for feeding and back filling log files',
       url='https://github.com/marklit/ihan',
       author='Mark Litwintschik',
