@@ -1,10 +1,10 @@
 from setuptools import setup
 
-
 setup(name='ihan',
-      version='0.3.4',
+      version='0.3.5',
       description='IHAN Client for feeding and back filling log files',
-      long_description='This utility is used for feeding and back filling log files to the IHAN service.',
+      long_description=open('docs/index.rst').read(),
+      long_description_content_type='text/x-rst',
       url='https://www.ihan.ee/',
       project_urls={
         "Bug Tracker": "https://github.com/marklit/ihan/issues",
