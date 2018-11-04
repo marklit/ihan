@@ -36,6 +36,8 @@ $ screen
 $ ihan live /var/log/nginx/access.log
 ```
 
+Once that's running type ``CTRL-A`` and then ``CTRL-D`` to return to your regular shell.
+
 ## Backfill Older Log Files
 
 If the file is not compressed, run the following:
@@ -51,3 +53,5 @@ If it is compressed, run the following:
 $ screen
 $ gunzip -c /var/log/nginx/access.log.gz | ihan backfill -
 ```
+
+Once that's running type ``CTRL-A`` and then ``CTRL-D`` to return to your regular shell.
