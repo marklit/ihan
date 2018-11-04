@@ -19,7 +19,7 @@ On most Ubuntu systems you should be able to install Python and virtualenv via t
 $ sudo apt update
 $ sudo apt install \
         python-pip \
-        python-virtualenv \
+        python-virtualenv
 ```
 
 ## Installation
