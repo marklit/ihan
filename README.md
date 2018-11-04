@@ -13,6 +13,15 @@
 
 Python 2.7, Python 3.3, 3.4 or 3.5 are supported.
 
+On most Ubuntu systems you should be able to install Python and virtualenv via the following:
+
+```bash
+$ sudo apt update
+$ sudo apt install \
+        python-pip \
+        python-virtualenv \
+```
+
 ## Installation
 
 ```bash
