@@ -106,6 +106,7 @@ def backfill(filename, batch_size, endpoint):
     sleep_interval = 0
     feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval)
 
+
 @click.group()
 def cli():
     pass
