@@ -1,5 +1,10 @@
+IHAN Client
+===========
+
+This is the installation and usage guide for the IHAN Client. This utility is used for feeding and back filling log files to the IHAN service.
+
 Requirements
-############
+------------
 
 Python 2.7 and Python 3.4+ are supported.
 
@@ -13,7 +18,7 @@ On most Ubuntu systems you should be able to install Python and virtualenv via t
         python-virtualenv
 
 Installation
-############
+------------
 
 .. code-block:: bash
 
@@ -22,7 +27,7 @@ Installation
     $ pip install --upgrade ihan
 
 Shipping Logs
-#############
+-------------
 
 Make sure the user account that is running has read access to the main nginx log file. If it doesn't please run the following. Replace ``your_user_name`` with your unix username (found via ``whoami``).
 
@@ -38,10 +43,10 @@ Make sure the user account that is running has read access to the main nginx log
 
 Once that's running type ``CTRL-A`` and then ``CTRL-D`` to return to your regular shell.
 
-Backfill Older Log Files
-########################
+Backfill Log Files
+------------------
 
-If the file is not compressed, run the following:
+If the log file is not compressed, run the following:
 
 .. code-block:: bash
 
