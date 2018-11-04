@@ -1,7 +1,7 @@
 IHAN Client
 ===========
 
-This is the installation and usage guide for the IHAN Client. This utility is used for feeding and back filling log files to the IHAN service.
+This is the installation and usage guide for the `IHAN <https://www.ihan.ee/>`_ Client. This utility is used for feeding and back filling log files to the IHAN service.
 
 Requirements
 ------------
