@@ -38,13 +38,8 @@ def send_it(endpoint, logs):
 has_binary = lambda s: "\x00" in s or any(ord(x) > 0x80 for x in s)
 
 
-@click.command()
-@click.argument('filename') # /dev/stdin
-@click.option('--from-beginning', default=False, type=bool)
-@click.option('--batch-size', default=10, type=int)
-@click.option('--endpoint', default='https://feed.ihan.ee/feed', type=str)
-@click.option('--sleep-interval', default=10, type=int)
-def live(filename, from_beginning, batch_size, endpoint, sleep_interval):
+def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval):
+    filename = '/dev/stdin' if filename.strip() == '-' else filename
     # WIP this can't detect the end of a stream when
     # gunzip -c data is being piped in.
     # If filename is /dev/stdin don't use tail, just use
@@ -91,5 +86,34 @@ def live(filename, from_beginning, batch_size, endpoint, sleep_interval):
                 eprint('Sleeping for ' + str(_interval) + 's')
                 sleep(_interval)
 
+
+@click.command()
+@click.argument('filename')
+@click.option('--from-beginning', default=False, type=bool)
+@click.option('--batch-size', default=10, type=int)
+@click.option('--endpoint', default='https://feed.ihan.ee/feed', type=str)
+@click.option('--sleep-interval', default=10, type=int)
+def live(filename, from_beginning, batch_size, endpoint, sleep_interval):
+    feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval)
+
+
+@click.command()
+@click.argument('filename')
+@click.option('--batch-size', default=1000, type=int)
+@click.option('--endpoint', default='https://feed.ihan.ee/feed', type=str)
+def backfill(filename, batch_size, endpoint):
+    from_beginning = False
+    sleep_interval = 0
+    feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval)
+
+@click.group()
+def cli():
+    pass
+
+
+cli.add_command(live)
+cli.add_command(backfill)
+
+
 if __name__ == '__main__':
-    live()
+    cli()
