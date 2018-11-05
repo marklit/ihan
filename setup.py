@@ -4,10 +4,12 @@ from   setuptools import setup
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+_read = lambda filename: open(os.path.join(dir_path, filename)).read()
+
 setup(name='ihan',
-      version='0.3.10',
+      version=_read('VERSION'),
       description='IHAN Client for feeding and back filling log files',
-      long_description=open(os.path.join(dir_path, 'docs/index.rst')).read(),
+      long_description=_read('docs/index.rst'),
       long_description_content_type='text/x-rst',
       url='https://www.ihan.ee/',
       project_urls={
