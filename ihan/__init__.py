@@ -34,7 +34,7 @@ def send_it(endpoint, logs):
     assert r.json()['lines'] == len(logs), 'Line counts failed to match'
 
 
-has_binary = lambda s: "\x00" in s or any(ord(x) > 0x80 for x in s)
+has_binary = lambda s: "\x00" in s or any(ord(x) > 0x80 for x in s) # noqa:E731
 
 
 def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval):
