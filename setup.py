@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='ihan',
-      version='0.3.5',
+      version='0.3.6',
       description='IHAN Client for feeding and back filling log files',
       long_description=open('docs/index.rst').read(),
       long_description_content_type='text/x-rst',
