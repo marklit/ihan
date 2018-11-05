@@ -58,11 +58,9 @@ def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval):
         eprint('batch: ' + str(n_batch))
         # Don't let a few binary bytes stop this in its tracks.
         try:
-            try:
-                logs = list([l.rstrip().decode('utf-8') for l in lines])
-            except AttributeError: # Python 3
-                raise UnicodeDecodeError()
-        except UnicodeDecodeError as exc: # Python 2
+            logs = list([l.rstrip().decode('utf-8') for l in lines])
+        except (AttributeError, # Python 3
+                UnicodeDecodeError) as exc: # Python 2
             eprint('Compressed logs are not supported')
             sleep(randint(30, 60))
             continue

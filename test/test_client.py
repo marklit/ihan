@@ -46,7 +46,7 @@ class TestClient(unittest.TestCase):
                     unichr(190) if six.PY2 else chr(190)}
         process_mock.configure_mock(**attrs)
         mock_subproc_popen.return_value = process_mock
-        with self.assertRaises(UnicodeEncodeError):
+        with self.assertRaises(Exception):
             feed_file('test', False, 10, '', 0)
         self.assertTrue(mock_subproc_popen.called)
 
