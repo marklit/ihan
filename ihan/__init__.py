@@ -60,9 +60,9 @@ def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval):
         try:
             try:
                 logs = list([l.rstrip().decode('utf-8') for l in lines])
-            except AttributeError as exc:
-                raise UnicodeDecodeError(exc)
-        except UnicodeDecodeError as exc:
+            except AttributeError: # Python 3
+                raise UnicodeDecodeError()
+        except UnicodeDecodeError as exc: # Python 2
             eprint('Compressed logs are not supported')
             sleep(randint(30, 60))
             continue
