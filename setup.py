@@ -14,6 +14,7 @@ setup(name='ihan',
       author='Mark Litwintschik',
       author_email='mark@marksblogg.com',
       license='MIT',
+      packages=['ihan'],
       scripts=['bin/ihan',],
       install_requires=[
           "Click",
