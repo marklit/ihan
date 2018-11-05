@@ -6,7 +6,7 @@ python:
   - "3.5"
   - "3.6"
 install:
-  - pip install tox unittest2
+  - pip install tox
 script:
   - tox --version
   - python setup.py test

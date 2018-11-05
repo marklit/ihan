@@ -4,10 +4,7 @@ import six
 
 from ihan import eprint, group, feed_file
 
-if six.PY2:
-    import unittest2 as unittest
-else:
-    import unittest
+import unittest
 
 
 
