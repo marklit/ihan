@@ -45,7 +45,8 @@ class TestClient(unittest.TestCase):
     @mock.patch('subprocess.Popen')
     def test_compressed_unsupported(self, mock_subproc_popen):
         process_mock = mock.Mock()
-        attrs = {'stdout.readline.return_value': unichr(190)}
+        attrs = {'stdout.readline.return_value':
+                    unichr(190) if six.PY2 else chr(190)}
         process_mock.configure_mock(**attrs)
         mock_subproc_popen.return_value = process_mock
         with self.assertRaises(UnicodeEncodeError):
