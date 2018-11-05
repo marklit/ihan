@@ -1,12 +1,9 @@
 from   mock import mock
 import requests
 import six
-
-from ihan import eprint, group, feed_file
-
 import unittest
 
-
+from ihan import eprint, group, feed_file
 
 
 def mocked_post(*args, **kwargs):
@@ -76,6 +73,7 @@ class TestClient(unittest.TestCase):
         feed_file('test', False, 1, '', 0)
         self.assertTrue(mock_subproc_popen.called)
         self.assertTrue(mock_eprint.called)
+
 
 if __name__ == '__main__':
     unittest.main()
