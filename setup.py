@@ -1,9 +1,13 @@
-from setuptools import setup
+import os
+from   setuptools import setup
+
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 setup(name='ihan',
-      version='0.3.6',
+      version='0.3.10',
       description='IHAN Client for feeding and back filling log files',
-      long_description=open('docs/index.rst').read(),
+      long_description=open(os.path.join(dir_path, 'docs/index.rst')).read(),
       long_description_content_type='text/x-rst',
       url='https://www.ihan.ee/',
       project_urls={

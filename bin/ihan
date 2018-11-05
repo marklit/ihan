@@ -19,7 +19,7 @@ def live(filename, from_beginning, batch_size, endpoint, sleep_interval):
 @click.option('--batch-size', default=1000, type=int)
 @click.option('--endpoint', default='https://feed.ihan.ee/feed', type=str)
 def backfill(filename, batch_size, endpoint):
-    from_beginning = False
+    from_beginning = True
     sleep_interval = 0
     feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval)
 
