@@ -65,10 +65,10 @@ class TestClient(unittest.TestCase):
             self.assertTrue(mock_subproc_popen.called)
 
     @mock.patch('subprocess.Popen')
-    @mock.patch('time.sleep')
-    def test_failed_payload(self, mock_subproc_popen, mock_sleep):
+    @mock.patch('ihan.eprint')
+    def test_failed_payload(self, mock_subproc_popen, mock_eprint):
         process_mock = mock.Mock()
-        attrs = {'stdout.readline.return_value': 'Test\n'}
+        attrs = {'stdout.readline.return_value': 'Test\nTest\n'}
         process_mock.configure_mock(**attrs)
         mock_subproc_popen.return_value = process_mock
 
@@ -77,7 +77,7 @@ class TestClient(unittest.TestCase):
         def test_post(self, mock_get):
             feed_file('test', False, 1, '', 0)
             self.assertTrue(mock_subproc_popen.called)
-            self.assertTrue(mock_sleep.called)
+            self.assertTrue(mock_eprint.called)
 
 if __name__ == '__main__':
     unittest.main()
