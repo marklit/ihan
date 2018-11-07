@@ -26,6 +26,18 @@ Installation
     $ source ~/.ihan/bin/activate
     $ pip install --upgrade ihan
 
+Logging In
+----------
+
+Make sure you have an account setup at `IHAN <http://www.ihan.ee/>`_ and you have your email address and password for your IHAN account to hand.
+
+.. code-block:: bash
+
+    $ source ~/.ihan/bin/activate
+    $ ihan login
+
+Enter your email address and password when prompted. If authentication is successful API credentials will be written to ``~/.ihan/config``. From this point on the ``live`` and ``backfill`` commands should work without issue.
+
 Shipping Logs
 -------------
 
