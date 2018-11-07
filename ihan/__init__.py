@@ -1,6 +1,8 @@
 from __future__ import print_function
 
 from   itertools import chain, islice
+import json
+from   os.path import expanduser, join
 from   random import randint
 import subprocess
 import sys
@@ -28,8 +30,10 @@ def group(num_items, iterable):
         yield chain((first_element,), chunk)
 
 
-def send_it(endpoint, logs):
-    r = requests.post(endpoint, json={"lines": logs})
+def send_it(endpoint, api_key, api_secret, logs):
+    r = requests.post(endpoint, json={'lines': logs,
+                                      'api_key': api_key,
+                                      'api_secret': api_secret})
     assert r.status_code == 200, r.status_code
     assert r.json()['lines'] == len(logs), 'Line counts failed to match'
 
@@ -38,6 +42,15 @@ has_binary = lambda s: "\x00" in s or any(ord(x) > 0x80 for x in s) # noqa:E731
 
 
 def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval):
+    try:
+        config_file = join(expanduser("~"), ".ihan/config")
+        api = json.loads(open(config_file, 'r').read())
+        assert len(api['api_key']) > 10 and len(api['api_secret']) > 10
+    except Exception as exc:
+        print(exc)
+        print("Please run this first: ihan login")
+        return
+
     filename = '/dev/stdin' if filename.strip() == '-' else filename
     # WIP this can't detect the end of a stream when
     # gunzip -c data is being piped in.
@@ -72,7 +85,7 @@ def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval):
 
         while True:
             try:
-                send_it(endpoint, logs)
+                send_it(endpoint, api['api_key'], api['api_secret'], logs)
                 sleep(0.25) # WIP: Make this optional
                 break
             except (KeyError,
