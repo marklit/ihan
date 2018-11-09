@@ -41,7 +41,8 @@ def send_it(endpoint, api_key, api_secret, logs):
 has_binary = lambda s: "\x00" in s or any(ord(x) > 0x80 for x in s) # noqa:E731
 
 
-def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval):
+def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval,
+              backfill):
     try:
         config_file = join(expanduser("~"), ".ihan/config")
         api = json.loads(open(config_file, 'r').read())
@@ -56,15 +57,20 @@ def feed_file(filename, from_beginning, batch_size, endpoint, sleep_interval):
     # gunzip -c data is being piped in.
     # If filename is /dev/stdin don't use tail, just use
     # something in python to follow stdin.
-    proc = subprocess.Popen(['tail',
-                             '--lines=+0' if from_beginning else '-n 1000',
-                             '--follow=name',
-                             '--retry',
-                             '--quiet',
-                             '--silent',
-                             '--sleep-interval=%d' % sleep_interval,
-                             filename],
-                            stdout=subprocess.PIPE)
+    if backfill:
+        proc = subprocess.Popen(['cat',
+                                 filename],
+                                stdout=subprocess.PIPE)
+    else:
+        proc = subprocess.Popen(['tail',
+                                 '--lines=+0' if from_beginning else '-n 1000',
+                                 '--follow=name',
+                                 '--retry',
+                                 '--quiet',
+                                 '--silent',
+                                 '--sleep-interval=%d' % sleep_interval,
+                                 filename],
+                                stdout=subprocess.PIPE)
 
     for n_batch, lines in enumerate(group(batch_size,
                             iter(proc.stdout.readline, ''))):
